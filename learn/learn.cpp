@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Sales_item.h"
 
 /* 第一章 */
 namespace node_1_2
@@ -122,13 +123,13 @@ namespace node_1_4_2
 		}
 
 		int a, b;
-		std::cin << a << b;
+		std::cin >> a >> b;
 		int end = a > b ? a : b;
 		int begin = a > b ? b : a;
 
 		for(int i = begin; i != end; ++i)
 		{
-			std::cout << i << endl;
+			std::cout << i << std::endl;
 		}
 
 
@@ -136,11 +137,75 @@ namespace node_1_4_2
 
 }
 
+namespace node_1_5_1
+{
+	void test_1_20(void)
+	{
+		Sales_item book;
+		std::cin >> book;
+		std::cout << book;
+	}
+
+	void test_1_21(void)
+	{
+		Sales_item book1;
+		Sales_item book2;
+		std::cin >> book1 >> book2;
+		std::cout << book1 + book2 << std::endl;
+	}
+	
+	void test_1_22(void)
+	{
+		Sales_item tmp;
+		Sales_item sum;
+		if(std::cin >> sum)
+		{
+			while(std::cin >> tmp)
+			{
+				sum += tmp;
+			}
+			std::cout << sum << std::endl;
+		}
+		else
+		{
+			std::cout << "Input error" << std::endl;
+		}
+	}
+}
+
+namespace node_1_5_2
+{
+	void test_1_23(void)
+	{
+		Sales_item tmp;
+		Sales_item old;
+		std::cin >> old;
+		int cnt = 1;
+
+		while(std::cin >> tmp)
+		{
+			if(tmp.isbn() == old.isbn())
+			{
+				++cnt;
+			}
+			else
+			{
+				std::cout << old.isbn() << " saled " << cnt << std::endl;
+				cnt = 1;
+				old = tmp;
+			}
+		}
+		std::cout << old.isbn() << " saled " << cnt << std::endl;
+	}
+}
+
 
 
 int main()
 {
-	node_1_4_2::test_1_12();
+	node_1_5_2::test_1_23();
+
+	
 
 	return 0;
 }
